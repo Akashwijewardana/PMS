@@ -22,7 +22,7 @@ public class Genaric {
 	private Integer id;
 	
 	@Column(name= "generic_name")
-	@NotBlank(message = "Name Riquierd")
+	
 	private String name;
 	
 	

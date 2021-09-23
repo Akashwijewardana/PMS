@@ -1,8 +1,10 @@
 package com.assesment.PMS.PMS.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.assesment.PMS.PMS.model.Brand;
+import com.assesment.PMS.PMS.model.Genaric;
 
 public interface BrandService {
 
@@ -10,8 +12,14 @@ public interface BrandService {
 
 	List<Brand> getAllBrands();
 
-	void updateBrand(Integer id, Brand brand);
+	public Optional <Brand> updateBrand(Integer id, Brand brand);
+	
+	public Brand getById(Integer id);
 
 	void delete(Integer id);
+
+	List<Brand> getAllByCatName();
+	
+	
 
 }

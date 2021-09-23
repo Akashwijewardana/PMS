@@ -25,7 +25,7 @@ public class PharmacistwebControl {
 	
 	@GetMapping("/")
 	public String showIndex() {
-		return "index";
+		return "indexx";
 	}
 	
 	@GetMapping("/showaddpharmacist")

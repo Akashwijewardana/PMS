@@ -24,6 +24,10 @@ public class Brand {
 	@Column(name="generic_id")
 	private Integer generic_id;
 	
+	private String generic_name;
+	
+	
+	
 	public Integer getGeneric_id() {
 		return generic_id;
 	}
@@ -31,6 +35,16 @@ public class Brand {
 
 	public void setGeneric_id(Integer generic_id) {
 		this.generic_id = generic_id;
+	}
+
+
+	public String getGeneric_name() {
+		return generic_name;
+	}
+
+
+	public void setGeneric_name(String generic_name) {
+		this.generic_name = generic_name;
 	}
 
 
