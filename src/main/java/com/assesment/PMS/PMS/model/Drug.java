@@ -2,14 +2,17 @@ package com.assesment.PMS.PMS.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "drugs")
-public class Drug {
+public class Drug implements java.io.Serializable {
 	@Id
 	@Column(name = "drug_id ")
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,23 +21,24 @@ public class Drug {
 	@Column(name = "drug_name")
 	private String name;
 	
-	@Column(name = "drug_full_quantity")
-	private Integer fullQty;
-	
-	@Column(name = "rack_id")
-	private Integer rack_id;
-	
-	@Column(name = "brand_id")
-	private Integer brand_id;
-	
-	@Column(name = "genaric_id ")
-	private Integer generic_id;
-	
-	@Column(name = "supplier_id")
-	private Integer supplier_id;
-	
 	@Column(name = "price")
-	private float price;
+	private Float price;
+	
+	@ManyToOne(targetEntity = Rack.class,fetch = FetchType.LAZY)
+	@JoinColumn(name = "rack_id", referencedColumnName = "rack_id")
+	private Rack rack;
+	
+	@ManyToOne(targetEntity = Brand.class,fetch = FetchType.LAZY)
+	@JoinColumn(name = "brand_id", referencedColumnName = "brand_id")
+	private Brand brand;
+	
+	@ManyToOne(targetEntity = Genaric.class,fetch = FetchType.LAZY)
+	@JoinColumn(name = "generic_id", referencedColumnName = "generic_id")
+	private Genaric genaric;
+	
+	@ManyToOne(targetEntity = Supplier.class,fetch = FetchType.LAZY)
+	@JoinColumn(name = "supplier_id", referencedColumnName = "supplier_id")
+	private Supplier supplier;
 
 	public Integer getId() {
 		return id;
@@ -52,54 +56,45 @@ public class Drug {
 		this.name = name;
 	}
 
-	public Integer getFullQty() {
-		return fullQty;
-	}
 
-	public void setFullQty(Integer fullQty) {
-		this.fullQty = fullQty;
-	}
-
-	public Integer getRack_id() {
-		return rack_id;
-	}
-
-	public void setRack_id(Integer rack_id) {
-		this.rack_id = rack_id;
-	}
-
-	public Integer getBrand_id() {
-		return brand_id;
-	}
-
-	public void setBrand_id(Integer brand_id) {
-		this.brand_id = brand_id;
-	}
-
-	public Integer getGeneric_id() {
-		return generic_id;
-	}
-
-	public void setGeneric_id(Integer generic_id) {
-		this.generic_id = generic_id;
-	}
-
-	public Integer getSupplier_id() {
-		return supplier_id;
-	}
-
-	public void setSupplier_id(Integer supplier_id) {
-		this.supplier_id = supplier_id;
-	}
-
-	public float getPrice() {
+	public Float getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(Float price) {
 		this.price = price;
 	}
-	
-	
-	
+
+	public Rack getRack() {
+		return rack;
+	}
+
+	public void setRack(Rack rack) {
+		this.rack = rack;
+	}
+
+	public Brand getBrand() {
+		return brand;
+	}
+
+	public void setBrand(Brand brand) {
+		this.brand = brand;
+	}
+
+	public Genaric getGenaric() {
+		return genaric;
+	}
+
+	public void setGenaric(Genaric genaric) {
+		this.genaric = genaric;
+	}
+
+	public Supplier getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
+	}
+
 }

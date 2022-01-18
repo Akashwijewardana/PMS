@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,7 +15,7 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "generic")
-public class Genaric {
+public class Genaric implements java.io.Serializable{
 
 	@Id
 	@Column(name= "generic_id")
@@ -22,10 +23,8 @@ public class Genaric {
 	private Integer id;
 	
 	@Column(name= "generic_name")
-	
 	private String name;
-	
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -41,12 +40,13 @@ public class Genaric {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
 
 
 
-//	@OneToMany(mappedBy = "generic")
-//	private Set<Brand> brand = new HashSet<>();
 
+	
 	
 	
 }

@@ -28,6 +28,13 @@ public class PharmacistwebControl {
 		return "indexx";
 	}
 	
+	@GetMapping("/403")
+	public String showpage() {
+		return "404";
+	}
+	
+	
+	
 	@GetMapping("/showaddpharmacist")
     public String ShowAddPharmacistForm(Pharmcist pharmcist) {
         return "addpharmacist";

@@ -3,12 +3,15 @@ package com.assesment.PMS.PMS.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.assesment.PMS.PMS.DTO.BrandGenericDTO;
+import com.assesment.PMS.PMS.DTO.StockDrugDTO;
 import com.assesment.PMS.PMS.model.Stock;
 import com.assesment.PMS.PMS.service.StockService;
 
@@ -35,6 +38,27 @@ public class StockController {
 	public void deleteStock(@PathVariable Integer id) {
 	service.delete(id);
 	}
+	
+	@GetMapping("/getallbystock")
+	public List<StockDrugDTO>getallbystock(){
+		return service.getstockdrug();
 	}
+	
+	@RequestMapping(method = RequestMethod.PUT,value="/updatestockforsales/{id}")
+	public void updateStockforSales(@PathVariable Integer id,@RequestBody Stock stock) {
+		 service.updateStock(id, stock);
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value = "/updateStockQtyforSales/{id}/{quantity}")
+	public int decreaseStockQty(@PathVariable Integer id, @PathVariable int quantity){
+	    System.out.println("\n Id : "+id+" Qty: "+quantity);
+	    service.decreaseStockQty(id, quantity);
+	    return 1;
+	}
+	
+	
+	
+	}
+
 	
 

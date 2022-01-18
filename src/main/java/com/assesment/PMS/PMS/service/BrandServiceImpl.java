@@ -1,5 +1,6 @@
 package com.assesment.PMS.PMS.service;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -9,10 +10,13 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.assesment.PMS.PMS.DTO.BrandGenericDTO;
 import com.assesment.PMS.PMS.model.Brand;
+
 import com.assesment.PMS.PMS.model.Genaric;
 import com.assesment.PMS.PMS.repository.BrandRepository;
 @Service
+@Transactional
 public class BrandServiceImpl implements BrandService{
 
 	@Autowired
@@ -23,12 +27,7 @@ public class BrandServiceImpl implements BrandService{
 		brandRepository.save(brand);
 		
 	}
-	@Override
-	public List<Brand> getAllBrands() {
-		List<Brand> brandList = new ArrayList<Brand>();
-		brandRepository.findAll().forEach(brandList::add);
-		return brandList;
-	}
+
 
 	@Override
 	public void delete(Integer id) {
@@ -40,7 +39,7 @@ public class BrandServiceImpl implements BrandService{
 	public Optional<Brand> updateBrand(Integer id, Brand brand) {
 		return brandRepository.findById(id).map(e ->{
 			e.setName(brand.getName());
-			e.setGeneric_id(brand.getGeneric_id());
+			
 			return e;
 		});
 	}
@@ -51,11 +50,20 @@ public class BrandServiceImpl implements BrandService{
 		return brand;
 	}
 	@Override
-	public List<Brand> getAllByCatName() {
-	
-		List<Brand> braList = new ArrayList<>();
-		brandRepository.findByCategoryID().forEach(braList::add);
+	public List<BrandGenericDTO> getallbygenerics() {
+		List<BrandGenericDTO> brandGenericDTOs =  new ArrayList<BrandGenericDTO>();
+		brandRepository.getbygen().forEach(brandGenericDTOs::add);
+		return brandGenericDTOs;
+	}
+
+
+	@Override
+	public List<Brand> getAllBra() {
+		List<Brand> braList = new ArrayList<Brand>();
+		brandRepository.findAll().forEach(braList::add);
 		return braList;
 	}
+
+	
 
 }

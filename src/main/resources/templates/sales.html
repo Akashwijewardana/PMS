@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>View Stock</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="static/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="static/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+
+</head>
+
+
+
+<body id="page-top">
+
+    <style >
+
+/* -------------------------------------
+    GLOBAL
+    A very basic CSS reset
+------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+img {
+    max-width: 100%;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none;
+    width: 100% !important;
+    height: 100%;
+    line-height: 1.6;
+}
+
+/* Let's make sure all tables have defaults */
+table td {
+    vertical-align: top;
+}
+
+/* -------------------------------------
+    BODY & CONTAINER
+------------------------------------- */
+body {
+    background-color: #f6f6f6;
+}
+
+.body-wrap {
+    background-color: #f6f6f6;
+    width: 100%;
+}
+
+.container {
+    display: block !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+    /* makes it centered */
+    clear: both !important;
+}
+
+.content {
+    max-width: 600px;
+    margin: 0 auto;
+    display: block;
+    padding: 20px;
+}
+
+/* -------------------------------------
+    HEADER, FOOTER, MAIN
+------------------------------------- */
+.main {
+    background: #fff;
+    border: 1px solid #e9e9e9;
+    border-radius: 3px;
+}
+
+.content-wrap {
+    padding: 20px;
+}
+
+.content-block {
+    padding: 0 0 20px;
+}
+
+.header {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.footer {
+    width: 100%;
+    clear: both;
+    color: #999;
+    padding: 20px;
+}
+.footer a {
+    color: #999;
+}
+.footer p, .footer a, .footer unsubscribe, .footer td {
+    font-size: 12px;
+}
+
+/* -------------------------------------
+    TYPOGRAPHY
+------------------------------------- */
+h1, h2, h3 {
+    font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    color: #000;
+    margin: 40px 0 0;
+    line-height: 1.2;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 500;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+h4 {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+p, ul, ol {
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+p li, ul li, ol li {
+    margin-left: 5px;
+    list-style-position: inside;
+}
+
+/* -------------------------------------
+    LINKS & BUTTONS
+------------------------------------- */
+a {
+    color: #1ab394;
+    text-decoration: underline;
+}
+
+.btn-primary {
+    text-decoration: none;
+    color: #FFF;
+    background-color: #1ab394;
+    border: solid #1ab394;
+    border-width: 5px 10px;
+    line-height: 2;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 5px;
+    text-transform: capitalize;
+}
+
+/* -------------------------------------
+    OTHER STYLES THAT MIGHT BE USEFUL
+------------------------------------- */
+.last {
+    margin-bottom: 0;
+}
+
+.first {
+    margin-top: 0;
+}
+
+.aligncenter {
+    text-align: center;
+}
+
+.alignright {
+    text-align: right;
+}
+
+.alignleft {
+    text-align: left;
+}
+
+.clear {
+    clear: both;
+}
+
+/* -------------------------------------
+    ALERTS
+    Change the class depending on warning email, good email or bad email
+------------------------------------- */
+.alert {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+    padding: 20px;
+    text-align: center;
+    border-radius: 3px 3px 0 0;
+}
+.alert a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+}
+.alert.alert-warning {
+    background: #f8ac59;
+}
+.alert.alert-bad {
+    background: #ed5565;
+}
+.alert.alert-good {
+    background: #1ab394;
+}
+
+/* -------------------------------------
+    INVOICE
+    Styles for the billing table
+------------------------------------- */
+.invoice {
+    margin: 40px auto;
+    text-align: left;
+    width: 80%;
+}
+.invoice td {
+    padding: 5px 0;
+}
+.invoice .invoice-items {
+    width: 100%;
+}
+.invoice .invoice-items td {
+    border-top: #eee 1px solid;
+}
+.invoice .invoice-items .total td {
+    border-top: 2px solid #333;
+    border-bottom: 2px solid #333;
+    font-weight: 700;
+}
+
+/* -------------------------------------
+    RESPONSIVE AND MOBILE FRIENDLY STYLES
+------------------------------------- */
+@media only screen and (max-width: 640px) {
+    h1, h2, h3, h4 {
+        font-weight: 600 !important;
+        margin: 20px 0 5px !important;
+    }
+
+    h1 {
+        font-size: 22px !important;
+    }
+
+    h2 {
+        font-size: 18px !important;
+    }
+
+    h3 {
+        font-size: 16px !important;
+    }
+
+    .container {
+        width: 100% !important;
+    }
+
+    .content, .content-wrap {
+        padding: 10px !important;
+    }
+
+    .invoice {
+        width: 100% !important;
+    }
+}
+
+</style>
+
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+              
+                <div class="sidebar-brand-text mx-3">Raj Pharmacy <sup>2</sup></div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item ">
+                <a class="nav-link" href="/">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+           <!-- Nav Item - Charts -->
+            <li class="nav-item " >
+                <a class="nav-link" href="/viewPharmacist">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>User Management</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item ">
+                <a class="nav-link" href="/viewDrugs">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Drug Management</span></a>
+            </li>
+            
+              <li class="nav-item ">
+                <a class="nav-link" href="/viewGenaric">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Generic Management</span></a>
+            </li>
+
+			
+			  <li class="nav-item ">
+                <a class="nav-link" href="/viewBrands">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Brands Management</span></a>
+            </li>
+            
+            <li class="nav-item ">
+                <a class="nav-link" href="/viewStock">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Stock Management</span></a>
+            </li>
+			
+			 <li class="nav-item ">
+                <a class="nav-link" href="tables.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Supplier Management</span></a>
+            </li>
+            
+             <li class="nav-item active ">
+                <a class="nav-link" href="/viewSales">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Sales</span></a>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <form class="form-inline">
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </form>
+
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                
+                
+                 <div id="myDIV" class="container-fluid">
+		<form method="post" class="form">
+		  <div class="form-row">
+		    <div class="col-4">
+		      <input type="text"  id="tbdrug_name" readonly class="form-control" placeholder="Drug Name">
+		    </div>
+		    <div class="col">
+		      <input type="text" id="tbavailbleqty"  readonly class="form-control" placeholder="Availble ">
+		    </div>
+		    
+		    <div class="col">
+		      <input type="text" class="form-control" placeholder="Qty"  id="purchase_qty">
+		    </div>
+		    <div class="col">
+		      <input type="text"  id="tbprice" readonly class="form-control" placeholder="Price">
+		    </div>
+		    
+		    <div class="col">
+		      <input type="hidden" class="form-control" placeholder="Qty"  id="stockid">
+		    </div>
+		    
+		     <div class="col">
+		      <button type="button" class="btn btn-outline-success">Add</button>
+		    </div>
+		  </div>
+		  
+		  </div> 
+		  
+		  
+      
+    	
+		</form> 
+		
+		
+		
+</div>
+
+
+
+	<div class="container-fluid">
+			<h1 class="h3 mb-2 text-gray-800">Stock</h1>
+                 
+
+     <div class="row">
+    <div class="col">
+          <div class="card shadow mb-4">
+          <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Sales</h6>
+ 
+          </div>
+        <div class="card-body">
+                        
+            <div th:switch="${stock}">
+                <h2 th:case="null">Stock list is empty</h2>
+                    <div th:case="*" class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                		<tr>
+									<th>Stock Id</th>
+									<th>Drug Name</th>
+									<th>Price</th>
+									<th>Available Quantity</th>
+									<th>Manufacture Date</th>
+									<th>Expire Date</th>
+									<th>ADD</th>
+									
+								
+								</tr>
+							</thead>
+							<tbody>
+							<tr th:each="stock:${stock}">
+								<td th:text="${stock.stock_id}"  id="stock_id"></td>
+								<td th:text="${stock.drug_name}"  id="drug_name"></td>
+								<td th:text="${stock.price}"  id="drug_price"></td>
+								<td th:text="${stock.qty}"  id="quantity"></td>
+								<td th:text="${stock.Mfd_date}" id="Mfd_date"></td>
+								<td th:text="${stock.Exp_date}" id="Exp_date"></td>
+								<td > <i class="bi bi-plus-square-fill" onclick="myFunction()" ></i></td>
+								
+								
+
+								
+
+
+							</tr>
+                            
+                            </tbody>
+                        </table>
+                    </div>
+
+            </div>
+        </div>
+                    
+                   
+            </div>
+    </div>
+    <div class="col">
+
+
+<table class="body-wrap">
+
+
+
+
+
+    <tbody><tr>
+        <td></td>
+        <td class="container" width="600">
+            <div class="content">
+                <table class="main" width="100%" cellpadding="0" cellspacing="0">
+                    <tbody><tr>
+                        <td class="content-wrap aligncenter">
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tbody><tr>
+                                    <td class="content-block">
+                                        <h2>Thanks for Shopping with Us.</h2>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="content-block">
+                                        <table class="invoice">
+                                            <tbody><tr>
+                                                <td>Anna Smith<br>Invoice #12345<br>June 01 2015</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+										  <table class="table table-striped" id="tbl_bill" style="display:none">
+										    <thead>
+										        <tr>
+										           
+										            <th>ProdName</th>
+										            <th>ProdPrice</th>
+										            <th>ProdQty</th>
+										            <th>TotalPrice</th>
+										            <th></th>
+										        </tr>
+										    </thead>
+										    <tbody id="tbl_bill_body"></tbody>
+										    <tfoot>
+										        <tr>
+										            <th colspan="2" align="right">Grand Total</th>
+										            <td colspan="2" id="txt_grand_total">0.00</td>
+										        </tr>
+										    </tfoot>
+										</table>
+                                                </td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="content-block">
+                                        54/4 Kandy
+                                    </td>
+                                </tr>
+                            </tbody></table>
+                        </td>
+                    </tr>
+                </tbody></table>
+               </div>
+        </td>
+        <td></td>
+    </tr>
+</tbody></table>
+
+    </div>
+  </div>
+
+    </div> <!-- container fluid -->
+               
+                  
+
+            </div>
+            <!-- End of Main Content -->
+
+         
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
+  
+    <script >
+    function myFunction() {
+    	  var x = document.getElementById("myDIV");
+    	  if (x.style.display === "none") {
+    	    x.style.display = "block";
+    	  } else {
+    	    x.style.display = "none";
+    	  }
+    	}
+    
+    /*  get from table*/
+    $(".bi-plus-square-fill").click(function(){
+var stock_id = $ (this).parents("tr").find("#stock_id").html();
+var drug_name = $ (this).parents("tr").find("#drug_name").html();
+var drug_price = $ (this).parents("tr").find("#drug_price").html();
+var quantity = $ (this).parents("tr").find("#quantity").html();
+
+
+//adding valuse to the text boxsess
+$("#tbdrug_name").val(drug_name);
+$("#tbavailbleqty").val(quantity);
+$("#tbprice").val(drug_price);
+$("#stockid").val(stock_id);
+
+});
+    
+    $(".btn-outline-success").click(function(){
+    	var stock_idd = $("#stockid").val();
+    	var drug_name = $("#tbdrug_name").val();
+    	var available_qty = parseFloat($("#tbavailbleqty").val());
+    	
+    var d_price = parseFloat($("#tbprice").val());	
+   var purchase_qty = parseFloat($("#purchase_qty").val());	
+    var afterqty = available_qty - purchase_qty;
+    var itemstotal = (d_price*purchase_qty); 
+    var grand_total = parseFloat($("#txt_grand_total").html());
+    grand_total += itemstotal;
+ 
+
+    
+    if(available_qty<purchase_qty){
+    	alert("Enter Valid Quantity");
+    	return;
+    }
+    
+    var row = "<tr id='trd'>";
+    row += "<td>"+drug_name+"</td>";
+    row += "<td>"+d_price+"</td>";
+    row += "<td>"+purchase_qty+"</td>";
+    row += "<td class='line_total'>"+itemstotal+"</td>";
+    row += "<td><a href='javascript:void(0)'><i class='bi bi-trash remove_item' style='color:red'></i></a></td>";
+    row += "</tr>";
+    $("#tbl_bill_body").append(row);
+    $("#txt_grand_total").html(grand_total);
+    $("#tbl_bill").css("display","block");
+   
+    $.ajax({
+    	  type: "PUT",
+    	  url: "/updateStockQtyforSales/"+stock_idd +"/"+afterqty,
+    	  success:function(data){
+    	    alert(data);
+    	  }
+    	}); 
+    	
+   // 	alert(stock_idd);
+    
+
+  
+
+    });
+    
+    $("#tbl_bill_body").on("click",".remove_item",function(){
+        var total = parseFloat($(this).parents("tr").find(".line_total").html());
+        var grand_total = parseFloat($("#txt_grand_total").html());
+        grand_total -= total;
+        $("#txt_grand_total").html(grand_total);
+        $(this).parents("#trd").remove();
+    });
+    </script>
+    
+  
+
+
+	              
+
+</body>
+</html>

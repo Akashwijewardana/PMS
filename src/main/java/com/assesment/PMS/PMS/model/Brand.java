@@ -1,7 +1,9 @@
 package com.assesment.PMS.PMS.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,9 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import net.bytebuddy.description.type.TypeDescription.Generic;
+
 @Entity
 @Table(name = "brand")
-public class Brand {
+public class Brand implements java.io.Serializable{
 
 	@Id
 	@Column(name= "brand_id")
@@ -21,51 +25,38 @@ public class Brand {
 	@Column(name = "brand_name")
 	private String name;
 	
-	@Column(name="generic_id")
-	private Integer generic_id;
-	
-	private String generic_name;
-	
-	
-	
-	public Integer getGeneric_id() {
-		return generic_id;
-	}
-
-
-	public void setGeneric_id(Integer generic_id) {
-		this.generic_id = generic_id;
-	}
-
-
-	public String getGeneric_name() {
-		return generic_name;
-	}
-
-
-	public void setGeneric_name(String generic_name) {
-		this.generic_name = generic_name;
-	}
-
+	@ManyToOne(targetEntity = Genaric.class,fetch = FetchType.LAZY)
+	@JoinColumn(name = "generic_id", referencedColumnName = "generic_id")
+	private Genaric genaric;
 
 	public Integer getId() {
 		return id;
 	}
 
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 
 	public String getName() {
 		return name;
 	}
 
-
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	public Genaric getGenaric() {
+		return genaric;
+	}
 
+	public void setGenaric(Genaric genaric) {
+		this.genaric = genaric;
+	}
+
+
+
+	
+	
+	
+	
 }

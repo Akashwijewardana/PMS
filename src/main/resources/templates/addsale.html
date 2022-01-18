@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Update Generic</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
+<body>
+
+	<div id="myDIV" class="container-fluid">
+		<form th:object="${stock1}" method="post" th:action="@{/editestock/{id} (id=${stock1.id})}" class="form">
+		  <div class="form-row">
+		    <div class="col-4">
+		      <input type="text"  readonly class="form-control" placeholder="Drug Name">
+		    </div>
+		    <div class="col">
+		      <input type="text" th:text="${stock1.qty}" th:id="${stockqty}" readonly class="form-control" placeholder="Availble ">
+		        
+		    </div>
+		    
+		    <div class="col">
+		      <input type="text" class="form-control"  placeholder="Qty">
+		    </div>
+		    <div class="col">
+		      <input type="text" readonly class="form-control" placeholder="Price">
+		    </div>
+		    
+		     <div class="col">
+		      <button type="button" class="btn btn-outline-success">Add</button>
+		    </div>
+		  </div>
+		  
+		  </div>
+		  
+		  
+      
+    	
+		</form>
+		
+		
+		
+</div>
+</body>
+</html>
